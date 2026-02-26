@@ -1,8 +1,8 @@
-tt.*
-.tests
-doc/tags
-debug
-.repro
-foo.*
-*.log
-data
+# Lazy.nvim lock file (optionnel, à inclure si tu veux reproduire les versions exactes)
+# lazy-lock.json
+
+# Caches et données générées
+/plugin/
+*.swp
+*.swo
+.DS_Store
