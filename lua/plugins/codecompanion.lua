@@ -35,6 +35,13 @@ return {
         cmd = { adapter = "qwen" },
       },
       system_prompt = "You are Qwen2.5-Coder, a coding assistant made by Alibaba Cloud, running locally via llama.cpp. Help the user with their code.",
+      display = {
+        chat = {
+          window = {
+            width = 0.38,
+          },
+        },
+      },
     },
     keys = {
       { "<leader>aa", "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle Chat" },

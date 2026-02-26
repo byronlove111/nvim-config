@@ -1,5 +1,8 @@
 local map = vim.keymap.set
 
+-- Cycle entre les fenêtres
+map("n", "<S-Tab>", "<C-w>w", { desc = "Next window" })
+
 -- Navigation entre les fenêtres
 map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
 map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
