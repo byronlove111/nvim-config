@@ -256,8 +256,22 @@ return {
       filesystem = {
         follow_current_file = { enabled = true },
         hijack_netrw_behavior = "disabled",
+        filtered_items = {
+          visible = true,
+          hide_dotfiles = false,
+          hide_gitignored = false,
+        },
       },
       window = { width = 25 },
+    },
+  },
+
+  -- Lazygit
+  {
+    "kdheepak/lazygit.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = {
+      { "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
     },
   },
 
