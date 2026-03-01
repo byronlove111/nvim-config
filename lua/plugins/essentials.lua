@@ -138,10 +138,10 @@ return {
     end,
   },
 
-  -- Completion avec nvim-cmp (désactivé)
+  -- Completion avec nvim-cmp
   {
     "hrsh7th/nvim-cmp",
-    enabled = false,
+    enabled = true,
     event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",

@@ -2,6 +2,7 @@ local map = vim.keymap.set
 
 -- Cycle entre les fenêtres
 map("n", "<S-Tab>", "<C-w>w", { desc = "Next window" })
+map("n", "<S-n>", "<C-w>w", { desc = "Next window" })
 
 -- Navigation entre les fenêtres
 map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
@@ -70,6 +71,9 @@ map("n", "<leader>lc", "<cmd>Lazy clean<cr>", { desc = "Lazy Clean" })
 -- Quitter plus facilement
 map("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit all" })
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
+vim.cmd("cabbrev wq! wqa")
+vim.cmd("cabbrev W w")
+vim.cmd("cabbrev Q q")
 
 -- Effacer la recherche
 map("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "Clear search highlight" })
