@@ -31,6 +31,7 @@ return {
         { "<leader>t", group = "terminal" },
         { "<leader>a", group = "avante" },
         { "<leader>b", group = "buffer" },
+        { "<leader>9", group = "99" },
       },
     },
   },
@@ -95,7 +96,7 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
 
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ts_ls", "pyright", "clangd" },
+        ensure_installed = { "lua_ls", "ts_ls", "pyright", "clangd", "gopls", "rust_analyzer" },
         automatic_installation = true,
         handlers = {
           function(server)
@@ -256,6 +257,7 @@ return {
       filesystem = {
         follow_current_file = { enabled = true },
         hijack_netrw_behavior = "disabled",
+        use_libuv_file_watcher = true,
         filtered_items = {
           visible = true,
           hide_dotfiles = false,

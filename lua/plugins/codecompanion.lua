@@ -12,29 +12,31 @@ return {
     },
     opts = {
       adapters = {
-        http = {
-          qwen = function()
-            return require("codecompanion.adapters").extend("openai_compatible", {
-              env = {
-                url = "http://127.0.0.1:8080",
-                api_key = "TERM",
-                chat_url = "/v1/chat/completions",
+        acp = {
+          cursor = function()
+            return require("codecompanion.adapters").extend("claude_code", {
+              commands = {
+                default = {
+                  vim.fn.expand("~/.local/bin/agent"),
+                  "acp",
+                },
               },
-              schema = {
-                model = { default = "qwen2.5-coder-7b-instruct" },
-                temperature = { default = 0.7 },
-                max_tokens = { default = 8192 },
+              defaults = {
+                auth_method = "cursor_login",
+              },
+              env = {
+                HOME = vim.fn.expand("~"),
+                PATH = vim.fn.getenv("PATH"),
               },
             })
           end,
         },
       },
       interactions = {
-        chat = { adapter = "qwen" },
-        inline = { adapter = "qwen" },
-        cmd = { adapter = "qwen" },
+        chat = { adapter = "cursor" },
+        inline = { adapter = "cursor" },
+        cmd = { adapter = "cursor" },
       },
-      system_prompt = "You are Qwen2.5-Coder, a coding assistant made by Alibaba Cloud, running locally via llama.cpp. Help the user with their code.",
       display = {
         chat = {
           window = {

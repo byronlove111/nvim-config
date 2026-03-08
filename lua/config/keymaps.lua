@@ -55,7 +55,7 @@ end, { desc = "Toggle transparency" })
 -- Terminal via snacks.nvim
 map("n", "<leader>tt", function() Snacks.terminal() end, { desc = "Terminal (float)" })
 map("n", "<leader>th", function()
-  Snacks.terminal(nil, { win = { position = "bottom" } })
+  Snacks.terminal(nil, { win = { position = "bottom", height = 0.25 } })
 end, { desc = "Terminal (horizontal)" })
 map("n", "<leader>tv", function()
   Snacks.terminal(nil, { win = { position = "right" } })

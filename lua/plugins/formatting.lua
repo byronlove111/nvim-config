@@ -19,7 +19,7 @@ return {
           jsonc = { "prettier" },
           yaml = { "prettier" },
           markdown = { "prettier" },
-          python = { "black", "isort" },
+          python = { "ruff_format", "ruff_organize_imports" },
           lua = { "stylua" },
           sh = { "shfmt" },
           bash = { "shfmt" },
@@ -30,9 +30,6 @@ return {
         formatters = {
           prettier = {
             prepend_args = { "--tab-width", "2", "--use-tabs", "false" },
-          },
-          black = {
-            prepend_args = { "--line-length", "88" },
           },
           stylua = {
             prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" },
