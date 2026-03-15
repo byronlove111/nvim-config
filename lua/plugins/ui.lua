@@ -5,25 +5,19 @@ return {
     event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = function()
-      local colors = {
-        fg      = "#cdd6f4",
-        fg_dim  = "#6c7086",
-        green   = "#a6e3a1",
-        mauve   = "#cba6f7",
-        red     = "#f38ba8",
-        yellow  = "#f9e2af",
-      }
-      local minimal = {
-        normal   = { a = { fg = colors.fg,     bg = "NONE", gui = "bold" }, b = { fg = colors.fg,     bg = "NONE" }, c = { fg = colors.fg,     bg = "NONE" } },
-        insert   = { a = { fg = colors.fg,     bg = "NONE", gui = "bold" }, b = { fg = colors.fg,     bg = "NONE" }, c = { fg = colors.fg,     bg = "NONE" } },
-        visual   = { a = { fg = colors.fg,     bg = "NONE", gui = "bold" }, b = { fg = colors.fg,     bg = "NONE" }, c = { fg = colors.fg,     bg = "NONE" } },
-        replace  = { a = { fg = colors.fg,     bg = "NONE", gui = "bold" }, b = { fg = colors.fg,     bg = "NONE" }, c = { fg = colors.fg,     bg = "NONE" } },
-        command  = { a = { fg = colors.fg,     bg = "NONE", gui = "bold" }, b = { fg = colors.fg,     bg = "NONE" }, c = { fg = colors.fg,     bg = "NONE" } },
-        inactive = { a = { fg = colors.fg_dim, bg = "NONE"               }, b = { fg = colors.fg_dim, bg = "NONE" }, c = { fg = colors.fg_dim,  bg = "NONE" } },
+      local fg = "#ffffff"
+      local fg_dim = "#888888"
+      local theme = {
+        normal   = { a = { fg = fg,     bg = "NONE", gui = "bold" }, b = { fg = fg,     bg = "NONE" }, c = { fg = fg,     bg = "NONE" } },
+        insert   = { a = { fg = fg,     bg = "NONE", gui = "bold" }, b = { fg = fg,     bg = "NONE" }, c = { fg = fg,     bg = "NONE" } },
+        visual   = { a = { fg = fg,     bg = "NONE", gui = "bold" }, b = { fg = fg,     bg = "NONE" }, c = { fg = fg,     bg = "NONE" } },
+        replace  = { a = { fg = fg,     bg = "NONE", gui = "bold" }, b = { fg = fg,     bg = "NONE" }, c = { fg = fg,     bg = "NONE" } },
+        command  = { a = { fg = fg,     bg = "NONE", gui = "bold" }, b = { fg = fg,     bg = "NONE" }, c = { fg = fg,     bg = "NONE" } },
+        inactive = { a = { fg = fg_dim, bg = "NONE"               }, b = { fg = fg_dim, bg = "NONE" }, c = { fg = fg_dim, bg = "NONE" } },
       }
       return {
         options = {
-          theme = minimal,
+          theme = theme,
           globalstatus = true,
           disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
           component_separators = { left = "", right = "" },

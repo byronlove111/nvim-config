@@ -44,14 +44,6 @@ map("n", "<leader>uf", function()
   vim.notify("Formatage auto: " .. (vim.g.autoformat and "activé" or "désactivé"))
 end, { desc = "Toggle auto format" })
 
--- Toggle fond transparent
-map("n", "<leader>ut", function()
-  local current = require("catppuccin").options.transparent_background
-  require("catppuccin").setup({ transparent_background = not current })
-  vim.cmd("colorscheme catppuccin")
-  vim.notify("Transparence: " .. (not current and "activée" or "désactivée"))
-end, { desc = "Toggle transparency" })
-
 -- Terminal via snacks.nvim
 map("n", "<leader>tt", function() Snacks.terminal() end, { desc = "Terminal (float)" })
 map("n", "<leader>th", function()
@@ -85,3 +77,13 @@ map("n", "<leader>us", "<cmd>SupermavenToggle<cr>", { desc = "Toggle Supermaven"
 map("n", "<leader>ml", function()
   require("lint").try_lint()
 end, { desc = "Trigger linting" })
+
+-- Markdown preview with mdv
+map("n", "<leader>p", function()
+  local file = vim.fn.expand("%:p")
+  if file == "" then
+    vim.notify("No file", vim.log.levels.WARN)
+    return
+  end
+  vim.fn.jobstart({ "mdv", file }, { detach = true })
+end, { desc = "Preview in mdv" })

@@ -1,3 +1,55 @@
+-- Transparence : étend l'option native du thème aux floats et panels plugins
+local function clear_bg(name)
+  local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = name, link = false })
+  if ok and hl then
+    hl.bg, hl.ctermbg = nil, nil
+    pcall(vim.api.nvim_set_hl, 0, name, hl)
+  end
+end
+
+local function apply_transparency()
+  for _, group in ipairs({
+    "NormalFloat", "FloatBorder", "FloatTitle",
+    "Pmenu", "PmenuSbar", "PmenuThumb",
+    "SignColumn",
+  }) do
+    clear_bg(group)
+  end
+  for _, prefix in ipairs({ "Telescope", "NeoTree", "WhichKey", "Lazy", "Mason", "Cmp", "Snacks" }) do
+    for _, name in ipairs(vim.fn.getcompletion(prefix, "highlight")) do
+      clear_bg(name)
+    end
+  end
+  -- Neo-tree : forcer les noms de dossiers/fichiers en blanc
+  for _, group in ipairs({
+    "NeoTreeDirectoryName", "NeoTreeDirectoryIcon", "NeoTreeRootName",
+    "NeoTreeFileName", "NeoTreeFileNameOpened",
+  }) do
+    pcall(vim.api.nvim_set_hl, 0, group, { fg = "#ffffff" })
+  end
+end
+
+vim.api.nvim_create_autocmd("ColorScheme", { callback = apply_transparency })
+apply_transparency()
+
+-- Makefile : afficher les tabs (obligatoires) et désactiver expandtab
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "make",
+  callback = function()
+    vim.opt_local.list = true
+    vim.opt_local.listchars = { tab = ">·" }
+    vim.opt_local.expandtab = false
+  end,
+})
+
+-- Markdown brut : désactiver le conceal pour voir la syntaxe telle quelle
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.conceallevel = 0
+  end,
+})
+
 -- Installer les formatters/linters Mason au premier démarrage (sans mason-tool-installer)
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",

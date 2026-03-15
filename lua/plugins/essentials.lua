@@ -18,7 +18,7 @@ return {
     lazy = false,
     opts = {
       notifier = { enabled = true },
-      terminal = { enabled = true },
+      terminal = { enabled = true, win = { wo = { winbar = "" } } },
       bigfile = { enabled = true },
       quickfile = { enabled = true },
       -- Smooth scrolling
@@ -207,6 +207,18 @@ return {
             luasnip.lsp_expand(args.body)
           end,
         },
+        window = {
+          completion = {
+            border = "rounded",
+            winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+            winblend = 0,
+          },
+          documentation = {
+            border = "rounded",
+            winhighlight = "Normal:Normal,FloatBorder:FloatBorder,Search:None",
+            winblend = 0,
+          },
+        },
         mapping = cmp.mapping.preset.insert({
           ["<C-n>"] = cmp.mapping.select_next_item(),
           ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -309,8 +321,39 @@ return {
           hide_gitignored = false,
         },
       },
-      window = { width = 25 },
+      window = {
+        width = 25,
+        mappings = {},
+      },
+      default_component_configs = {
+        indent = { padding = 1 },
+        icon = { folder_closed = "", folder_open = "", folder_empty = "" },
+        modified = { symbol = "", highlight = "NeoTreeModified" },
+        name = { trailing_slash = true, use_git_status_colors = false },
+        git_status = { symbols = {} },
+        file_size = { enabled = false },
+        type = { enabled = false },
+        last_modified = { enabled = false },
+        created = { enabled = false },
+        symlink_target = { enabled = false },
+      },
+      sources = { "filesystem" },
+      source_selector = { winbar = false, statusline = false },
+      use_popups_for_input = true,
     },
+    config = function(_, opts)
+      local orig_name = require("neo-tree.sources.common.components").name
+      opts.filesystem = opts.filesystem or {}
+      opts.filesystem.components = {
+        name = function(config, node, state)
+          if node:get_depth() == 1 and node.type ~= "message" then
+            return { text = vim.fn.fnamemodify(node:get_id(), ":t") .. "/", highlight = "NeoTreeRootName" }
+          end
+          return orig_name(config, node, state)
+        end,
+      }
+      require("neo-tree").setup(opts)
+    end,
   },
 
   -- Lazygit

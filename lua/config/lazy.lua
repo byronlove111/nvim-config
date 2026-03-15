@@ -39,6 +39,7 @@ require("lazy").setup({
     border = "rounded",
     title = "lazy.nvim",
     size = { width = 0.8, height = 0.8 },
+    backdrop = 100,
   },
   performance = {
     rtp = {
