@@ -1,7 +1,14 @@
 return {
   -- Librairies utilisées par de nombreux plugins
   { "nvim-lua/plenary.nvim", lazy = true },
-  { "nvim-tree/nvim-web-devicons", lazy = true },
+  {
+    url = "https://github.com/DaikyXendo/nvim-material-icon",
+    name = "nvim-web-devicons",
+    lazy = true,
+    config = function()
+      require("nvim-web-devicons").setup()
+    end,
+  },
   { "MunifTanjim/nui.nvim", lazy = true },
 
   -- Snacks: notifications, terminal flottant, et utilitaires modernes
@@ -14,6 +21,36 @@ return {
       terminal = { enabled = true },
       bigfile = { enabled = true },
       quickfile = { enabled = true },
+      -- Smooth scrolling
+      scroll = { enabled = true },
+      words = { enabled = false },
+      -- Beautiful vim.ui.input / vim.ui.select
+      input = { enabled = true },
+      -- Dashboard au démarrage
+      dashboard = {
+        enabled = true,
+        sections = {
+          { section = "header" },
+          { section = "keys", gap = 1, padding = 1 },
+          { section = "startup" },
+        },
+        preset = {
+          keys = {
+            { icon = " ", key = "f", desc = "Find File",       action = ":Telescope find_files" },
+            { icon = " ", key = "g", desc = "Live Grep",       action = ":Telescope live_grep" },
+            { icon = " ", key = "r", desc = "Recent Files",    action = ":Telescope oldfiles" },
+            { icon = " ", key = "c", desc = "Config",          action = ":e $MYVIMRC" },
+            { icon = "󰒲 ", key = "l", desc = "Lazy",            action = ":Lazy" },
+            { icon = " ", key = "q", desc = "Quit",            action = ":qa" },
+          },
+        },
+      },
+      -- Statuscolumn moderne (numéros + signes + fold)
+      statuscolumn = { enabled = true },
+      -- Scope highlight (bloc courant)
+      scope = { enabled = true },
+      -- Indent guides via snacks
+      indent = { enabled = false },
     },
   },
 
@@ -22,6 +59,13 @@ return {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
+      win = {
+        border = "rounded",
+        wo = {
+          winblend = 0,
+          winhighlight = "Normal:Normal,FloatBorder:FloatBorder,FloatTitle:Normal,FloatFooter:Normal",
+        },
+      },
       spec = {
         { "<leader>f", group = "find" },
         { "<leader>c", group = "code" },
@@ -217,6 +261,7 @@ return {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
     opts = {
+      current_line_blame = false,
       signs = {
         add = { text = "▎" },
         change = { text = "▎" },
@@ -291,16 +336,8 @@ return {
     opts = {},
   },
 
-  -- Guides d'indentation
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = { "BufReadPost", "BufNewFile" },
-    main = "ibl",
-    opts = {
-      indent = { char = "│" },
-      scope = { enabled = false },
-    },
-  },
+  -- Guides d'indentation (remplacé par snacks.indent)
+  { "lukas-reineke/indent-blankline.nvim", enabled = false },
 
   -- TODO comments
   {

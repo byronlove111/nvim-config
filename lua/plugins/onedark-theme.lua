@@ -5,9 +5,9 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      flavour = "mocha",
-      background = { light = "latte", dark = "mocha" },
-      transparent_background = false,
+      flavour = "macchiato",
+      background = { light = "latte", dark = "macchiato" },
+      transparent_background = true,
       show_end_of_buffer = false,
       term_colors = true,
       styles = {
@@ -32,6 +32,53 @@ return {
             information = { "undercurl" },
           },
         },
+      },
+      highlight_overrides = {
+        macchiato = function(c)
+          return {
+            -- Floating windows : fond transparent pour laisser le blur Ghostty transparaître
+            NormalFloat = { bg = "NONE" },
+            FloatBorder = { fg = c.overlay1, bg = "NONE" },
+            FloatTitle = { fg = c.lavender, bg = "NONE" },
+            FloatFooter = { fg = c.overlay1, bg = "NONE" },
+            -- Popup menu (complétion)
+            Pmenu = { bg = "NONE" },
+            PmenuSel = { fg = c.base, bg = c.lavender },
+            PmenuSbar = { bg = "NONE" },
+            -- Telescope
+            TelescopeNormal = { bg = "NONE" },
+            TelescopeBorder = { fg = c.overlay1, bg = "NONE" },
+            TelescopePromptNormal = { bg = "NONE" },
+            TelescopePromptBorder = { fg = c.overlay1, bg = "NONE" },
+            TelescopeResultsNormal = { bg = "NONE" },
+            TelescopePreviewNormal = { bg = "NONE" },
+            -- Which-key
+            WhichKeyFloat = { bg = "NONE" },
+            WhichKeyNormal = { bg = "NONE" },
+            -- Notify
+            NotifyBackground = { bg = "NONE" },
+            -- Lazy
+            LazyNormal = { bg = "NONE" },
+            LazyBackdrop = { bg = "NONE" },
+            -- Mason
+            MasonNormal = { bg = "NONE" },
+            -- Neo-tree : tout en blanc
+            NeoTreeFileName = { fg = c.text },
+            NeoTreeFileNameOpened = { fg = c.text },
+            NeoTreeDirectoryName = { fg = c.text },
+            NeoTreeDirectoryIcon = { fg = c.text },
+            NeoTreeRootName = { fg = c.text },
+            NeoTreeGitUntracked = { fg = c.text },
+            NeoTreeGitModified = { fg = c.text },
+            NeoTreeGitAdded = { fg = c.text },
+            NeoTreeGitConflict = { fg = c.text },
+            NeoTreeGitDeleted = { fg = c.text },
+            NeoTreeGitIgnored = { fg = c.text },
+            NeoTreeGitStaged = { fg = c.text },
+            NeoTreeGitUnstaged = { fg = c.text },
+            NeoTreeSymbolicLinkTarget = { fg = c.text },
+          }
+        end,
       },
     },
     config = function(_, opts)
