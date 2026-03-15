@@ -42,13 +42,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Markdown brut : désactiver le conceal pour voir la syntaxe telle quelle
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "markdown",
-  callback = function()
-    vim.opt_local.conceallevel = 0
-  end,
-})
 
 -- Installer les formatters/linters Mason au premier démarrage (sans mason-tool-installer)
 vim.api.nvim_create_autocmd("User", {
