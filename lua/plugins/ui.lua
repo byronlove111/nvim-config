@@ -26,9 +26,23 @@ return {
         sections = {
           lualine_a = { "mode" },
           lualine_b = { "branch" },
-          lualine_c = { "diagnostics" },
+          lualine_c = {
+            {
+              "diagnostics",
+              colored = false,
+              symbols = { error = "E ", warn = "W ", info = "I ", hint = "H " },
+            },
+          },
           lualine_x = {},
           lualine_y = { "location" },
+          lualine_z = {},
+        },
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = {},
+          lualine_x = {},
+          lualine_y = {},
           lualine_z = {},
         },
       }
