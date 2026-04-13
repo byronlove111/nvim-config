@@ -79,9 +79,9 @@ map("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "Clear search highlight" })
 -- Désactiver n (next search result)
 map("n", "n", "<Nop>", { desc = "Disabled" })
 
--- Désactiver J (join lines) et K (hover doc)
-map("n", "J", "<Nop>", { desc = "Disabled" })
-map("n", "K", "<Nop>", { desc = "Disabled" })
+-- Shift+J/K = j/k
+map("n", "J", "j", { desc = "Down" })
+map("n", "K", "k", { desc = "Up" })
 
 -- Supermaven toggle
 map("n", "<leader>us", "<cmd>SupermavenToggle<cr>", { desc = "Toggle Supermaven" })
