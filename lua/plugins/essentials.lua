@@ -137,7 +137,7 @@ return {
       "williamboman/mason-lspconfig.nvim",
     },
     config = function()
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       require("mason-lspconfig").setup({
         ensure_installed = { "lua_ls", "ts_ls", "pyright", "clangd", "gopls", "rust_analyzer" },
@@ -175,7 +175,6 @@ return {
           m("gD", vim.lsp.buf.declaration, "Go to declaration")
           m("gr", "<cmd>Telescope lsp_references<cr>", "References")
           m("gi", vim.lsp.buf.implementation, "Go to implementation")
-          m("K", vim.lsp.buf.hover, "Hover")
           m("<leader>ca", vim.lsp.buf.code_action, "Code action")
           m("<leader>rn", vim.lsp.buf.rename, "Rename")
         end,
