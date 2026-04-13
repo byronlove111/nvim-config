@@ -21,10 +21,6 @@ map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
 
--- Déplacer les lignes sélectionnées
-map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move selection down" })
-map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move selection up" })
-
 -- Indentation en mode visuel (garde la sélection)
 map("v", "<", "<gv", { desc = "Indent left" })
 map("v", ">", ">gv", { desc = "Indent right" })
