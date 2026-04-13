@@ -80,8 +80,8 @@ map("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "Clear search highlight" })
 map("n", "n", "<Nop>", { desc = "Disabled" })
 
 -- Shift+J/K = j/k
-map("n", "J", "j", { desc = "Down" })
-map("n", "K", "k", { desc = "Up" })
+map({ "n", "v" }, "J", "j", { desc = "Down" })
+map({ "n", "v" }, "K", "k", { desc = "Up" })
 
 -- Supermaven toggle
 map("n", "<leader>us", "<cmd>SupermavenToggle<cr>", { desc = "Toggle Supermaven" })
